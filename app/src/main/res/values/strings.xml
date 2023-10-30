@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Dinner Winner</string>
+    <string name="title_activity_main">Dinner Decider</string>
+    <string name="menu_add">Add Menu</string>
+    <string name="add_button">Add</string>
+    <string name="decide_button">Decide</string>
+</resources>
