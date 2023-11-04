@@ -1,39 +1,37 @@
 package com.example.assignment2
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TableLayout
+import android.widget.TableRow
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import kotlin.random.Random
+import androidx.appcompat.app.AppCompatActivity
 
 
 class MainActivity : AppCompatActivity() {
-    private val menuList =
-        arrayListOf<String>("Hamburger", "Pizza", "Mexican", "American", "Chinese");
-//    val decideButton: Button = findViewById(R.id.decide_button);
-//    val editable_text: EditText = this.findViewById(R.id.menu_editable);
-//    val addButton: Button = findViewById(R.id.add_button);
 
     lateinit var addButton: Button;
-    lateinit var decideButton: Button;
-    lateinit var menuText: EditText;
+    lateinit var tablePanel: TableLayout;
+    lateinit var versionName: EditText;
+    lateinit var codeName: EditText;
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        menuText = findViewById(R.id.menu_editable)
         addButton = findViewById(R.id.add_button)
-        decideButton = findViewById(R.id.decide_button)
         addButton.setOnClickListener(clickListener);
-        decideButton.setOnClickListener(clickListener)
+        tablePanel = findViewById(R.id.tab_panel)
+        versionName = findViewById(R.id.edit_android_version);
+        codeName = findViewById(R.id.edit_android_code_name);
     }
 
     fun alertUser(message: String) {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Dinner Message")
+        builder.setTitle("Tab Message")
         builder.setMessage(message)
         builder.setPositiveButton("OK") { dialog, which ->
             dialog.dismiss();
@@ -43,28 +41,45 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun addRowWithValue(code: String, version: String) {
+        val tableRow = TableRow(this)
+
+        val androidVersionTextView = TextView(this)
+        androidVersionTextView.setText(version)
+
+        val androidCodeNameTextView = TextView(this)
+        androidCodeNameTextView.setText(code)
+
+        tableRow.addView(androidVersionTextView)
+        tableRow.addView(androidCodeNameTextView)
+
+
+
+        tablePanel.addView(tableRow)
+    }
+
     val clickListener: View.OnClickListener = View.OnClickListener { view ->
         run {
             when (view.id) {
                 R.id.add_button -> {
-                    val toAdd = menuText.text;
-                    if(toAdd.toString().isNotEmpty()){
-                        menuList.add(toAdd.toString())
-                        toAdd.clear();
-                        alertUser("Added a new menu!")
+                    val codeToAdd = codeName.text;
+                    val versionToAdd = versionName.text;
 
-                    }else{
-                        alertUser("Please enter a valid menu!")
+                   if(codeToAdd.toString().isNullOrEmpty() || versionToAdd.toString().isNullOrEmpty()){
+                       alertUser("Please enter the values!")
+                   }
+
+                    if (codeToAdd.toString().isNotEmpty() && versionToAdd.toString().isNotEmpty()) {
+                        println(codeToAdd)
+                        addRowWithValue(codeToAdd.toString(), versionToAdd.toString());
+                        codeToAdd.clear();
+                        versionToAdd.clear();
+                        alertUser("Added a new android!")
                     }
-                }
-
-                R.id.decide_button -> {
-                    menuText.setText(menuList[Random.nextInt(menuList.size)])
                 }
             }
         }
     }
-
 }
 
 
