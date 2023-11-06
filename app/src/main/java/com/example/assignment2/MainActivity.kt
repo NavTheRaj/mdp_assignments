@@ -22,11 +22,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        addButton = findViewById(R.id.add_button)
-        addButton.setOnClickListener(clickListener);
-        tablePanel = findViewById(R.id.tab_panel)
-        versionName = findViewById(R.id.edit_android_version);
-        codeName = findViewById(R.id.edit_android_code_name);
+//        addButton = findViewById(R.id.add_button)
+//        addButton.setOnClickListener(clickListener);
+//        tablePanel = findViewById(R.id.tab_panel)
+//        versionName = findViewById(R.id.edit_android_version);
+//        codeName = findViewById(R.id.edit_android_code_name);
     }
 
     fun alertUser(message: String) {
@@ -58,28 +58,28 @@ class MainActivity : AppCompatActivity() {
         tablePanel.addView(tableRow)
     }
 
-    val clickListener: View.OnClickListener = View.OnClickListener { view ->
-        run {
-            when (view.id) {
-                R.id.add_button -> {
-                    val codeToAdd = codeName.text;
-                    val versionToAdd = versionName.text;
-
-                   if(codeToAdd.toString().isNullOrEmpty() || versionToAdd.toString().isNullOrEmpty()){
-                       alertUser("Please enter the values!")
-                   }
-
-                    if (codeToAdd.toString().isNotEmpty() && versionToAdd.toString().isNotEmpty()) {
-                        println(codeToAdd)
-                        addRowWithValue(codeToAdd.toString(), versionToAdd.toString());
-                        codeToAdd.clear();
-                        versionToAdd.clear();
-                        alertUser("Added a new android!")
-                    }
-                }
-            }
-        }
-    }
+//    val clickListener: View.OnClickListener = View.OnClickListener { view ->
+//        run {
+//            when (view.id) {
+//                R.id.add_button -> {
+//                    val codeToAdd = codeName.text;
+//                    val versionToAdd = versionName.text;
+//
+//                   if(codeToAdd.toString().isNullOrEmpty() || versionToAdd.toString().isNullOrEmpty()){
+//                       alertUser("Please enter the values!")
+//                   }
+//
+//                    if (codeToAdd.toString().isNotEmpty() && versionToAdd.toString().isNotEmpty()) {
+//                        println(codeToAdd)
+//                        addRowWithValue(codeToAdd.toString(), versionToAdd.toString());
+//                        codeToAdd.clear();
+//                        versionToAdd.clear();
+//                        alertUser("Added a new android!")
+//                    }
+//                }
+//            }
+//        }
+//    }
 }
 
 

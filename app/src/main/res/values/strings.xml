@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">Dinner Winner</string>
-    <string name="title_activity_main">Table Layout</string>
+    <string name="app_name">Walmart</string>
+    <string name="title_activity_main">Shopping</string>
     <string name="android_code">Enter android code name</string>
     <string name="add_button">Add</string>
     <string name="android_version">Enter android version</string>
+    <string name="sign_in">Sign in to your account</string>
+    <string name="email_address_required">Email Address (required)</string>
 
 </resources>
