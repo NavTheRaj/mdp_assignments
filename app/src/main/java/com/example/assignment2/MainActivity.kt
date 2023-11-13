@@ -1,118 +1,121 @@
 package com.example.assignment2
 
-import android.content.Intent
+
+import android.app.AlertDialog
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.CheckBox
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import androidx.activity.ComponentActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
+    private lateinit var radioGroupOne: RadioGroup;
+    private lateinit var radioButtonOneA: RadioButton
+    private lateinit var radioButtonOneB: RadioButton
+    private lateinit var radioButtonOneC: RadioButton
+    private lateinit var radioButtonOneD: RadioButton
 
-    private lateinit var signInBtn: Button
-    private lateinit var emailText: EditText
-    private lateinit var passwordText: EditText
-    private lateinit var createAccountBtn: Button
-    private lateinit var forgotPass:TextView
-    val users: ArrayList<User> = ArrayList()
+    private lateinit var checkbox1: CheckBox
+    private lateinit var checkbox2: CheckBox
+    private lateinit var checkbox3: CheckBox
+    private lateinit var checkbox4: CheckBox
+    private lateinit var checkbox5: CheckBox
 
+    private lateinit var submitBtn: Button
+    private lateinit var resetBtn: Button
+
+    private var score = 0
+    private var checkboxScore = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Find the views using view binding
-        signInBtn = findViewById(R.id.signInBtn)
-        emailText = findViewById(R.id.emailText)
-        passwordText = findViewById(R.id.passwordText)
-        createAccountBtn = findViewById(R.id.createAcntBtn);
-        forgotPass = findViewById(R.id.forgotPassword);
 
-        val firstName = intent.getStringExtra("firstName")
-        val lastName = intent.getStringExtra("lastName")
-        val email = intent.getStringExtra("email")
+        radioGroupOne = findViewById(R.id.radioGroupOne);
+        radioButtonOneA = findViewById(R.id.radioButtonOneA)
+        radioButtonOneB = findViewById(R.id.radioButtonOneB)
+        radioButtonOneC = findViewById(R.id.radioButtonOneC)
+        radioButtonOneD = findViewById(R.id.radioButtonOneD)
 
+        checkbox1 = findViewById(R.id.checkbox1)
+        checkbox2 = findViewById(R.id.checkbox2)
+        checkbox3 = findViewById(R.id.checkbox3)
+        checkbox4 = findViewById(R.id.checkbox4)
+        checkbox5 = findViewById(R.id.checkbox5)
 
-        val password = intent.getStringExtra("password")
+        submitBtn = findViewById(R.id.submitBtn)
+        resetBtn = findViewById(R.id.resetBtn)
 
-        users.add(User(firstName.toString(), lastName.toString(), email.toString(), password.toString()))
-        users.add(User("John", "Doe", "john.doe@example.com", "password123"))
-        users.add(User("Jane", "Doe", "jane.doe@example.com", "password456"))
-        users.add(User("Peter", "Parker", "peter.parker@example.com", "spiderman"))
-        users.add(User("Mary", "Jane", "mary.jane@example.com", "mj"))
-        users.add(User("Bruce", "Wayne", "bruce.wayne@example.com", "batman"))
-
-        UsersList.addUsers(users)
-
-
-        // Set the click listener for the sign in button
-        signInBtn.setOnClickListener {
-            // Validate the login credentials
-            val username = emailText.text.toString()
-            val password = passwordText.text.toString()
-
-            val user = UsersList.getUsers().find { it.username == username }
-
-
-            if (user != null && user.password == password) {
-                // Start the shopping activity
-                val intent = Intent(this, ShoppingActivity::class.java)
-
-                val user = UsersList.getUsers().find { it.username == username }
-                val username = user?.firstName + " " + user?.lastName;
-
-                intent.putExtra("username", username)
-                startActivity(intent)
-            } else {
-                // Show an error message
-                Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show()
+        // Set up the radio group
+        radioGroupOne.setOnCheckedChangeListener { _, checkedId ->
+            if (checkedId == radioButtonOneA.id) {
+                // Correct answer
+                score += 50
             }
         }
 
-        createAccountBtn.setOnClickListener {
-            val intent = Intent(this, CreateAccountActivity::class.java)
-            startActivity(intent)
-        }
 
-        forgotPass.setOnClickListener {
-            if(!emailText.toString().isNullOrEmpty() && !passwordText.toString().isNullOrEmpty()){
-                sendEmail(emailText.toString());
-            }else{
-                Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show()
+        fun calculateCheckBoxScore(isChecked: Boolean) {
+            if (checkboxScore == 4 && isChecked) {
+                score += 50
+            } else if (checkboxScore == 5 && !isChecked) {
+                score -= 50
             }
-        }
-    }
 
-    fun getPasswordFromList(email:String): String {
-        val user = UsersList.getUsers().find { user -> user.username == email }
-        if (user != null) {
-            return user.password.toString()
+            checkboxScore = if (isChecked) checkboxScore + 1 else checkboxScore - 1
         }
 
-        return "No record found";
-    }
+        fun resetQuiz() {
+            radioGroupOne.clearCheck()
+            checkbox1.isChecked = false
+            checkbox2.isChecked = false
+            checkbox3.isChecked = false
+            checkbox4.isChecked = false
+            checkbox5.isChecked = false
 
-    fun sendEmail(email:String){
-        val password: String = getPasswordFromList(email)
+            score = 0
+        }
+
+        // Set up the check boxes
+        checkbox1.setOnCheckedChangeListener { _, isChecked ->
+            calculateCheckBoxScore(isChecked)
+        }
+        checkbox2.setOnCheckedChangeListener { _, isChecked ->
+            calculateCheckBoxScore(isChecked)
+        }
+        checkbox3.setOnCheckedChangeListener { _, isChecked ->
+            calculateCheckBoxScore(isChecked)
+        }
+        checkbox4.setOnCheckedChangeListener { _, isChecked ->
+            calculateCheckBoxScore(isChecked)
+        }
+        checkbox5.setOnCheckedChangeListener { _, isChecked ->
+            calculateCheckBoxScore(isChecked)
+        }
+
+        // Set up the submit button
+        submitBtn.setOnClickListener {
+            // Check the answers
+
+            // Show an alert dialog with the results
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Quiz Results")
+            builder.setMessage("You scored $score points.")
+            builder.setPositiveButton("OK") { dialog, _ ->
+                resetQuiz()
+                dialog.dismiss()
+            }
+            builder.show()
+        }
+
+        // Set up the reset button
+        resetBtn.setOnClickListener {
+            // Clear the answers and reset the score
+            resetQuiz()
+        }
 
 
-        val emailIntent = Intent(Intent.ACTION_SEND)
-
-
-        emailIntent.type = "message/rfc822"
-
-
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
-
-
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Password Recovery")
-
-
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Your password is: $password")
-
-
-        startActivity(Intent.createChooser(emailIntent, "Send Email"))
     }
 }
-

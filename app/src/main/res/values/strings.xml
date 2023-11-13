@@ -1,17 +1,22 @@
 <resources>
-    <string name="app_name">Walmart</string>
-    <string name="title_activity_main">Shopping</string>
-    <string name="android_code">Enter android code name</string>
-    <string name="add_button">Add</string>
-    <string name="android_version">Enter android version</string>
-    <string name="sign_in">Sign in to your account</string>
-    <string name="sign_up">Create an account</string>
-    <string name="email_address_required">Email Address (required)</string>
-    <string name="first_name">First Name</string>
-    <string name="last_name">Last Name</string>
-    <string name="email_address">Email Address</string>
-    <string name="password">Password</string>
-    <string name="title_activity_second">Shop by Category</string>
-    <string name="create_account_activity">Create Account</string>
+    <string name="app_name">Quiz App</string>
+    <string name="title_activity_main">Kotlin 101</string>
 
+    <string name="question_one">What is the difference between a `var` and a `val` in Kotlin?</string>
+    <string name="radio_button_a_answer">A `var` is a mutable variable, and a `val` is an immutable variable.</string>
+    <string name="radio_button_b_answer">Both `var` and `val` are mutable variables.</string>
+    <string name="radio_button_c_answer">Both `var` and `val` are immutable variables.</string>
+    <string name="radio_button_d_answer">None of the above.</string>
+
+    <string name="question_two">Which of the following is a data type in Kotlin?</string>
+    <string name="checkbox_one_a_answer">Int</string>
+    <string name="checkbox_one_b_answer">String</string>
+    <string name="checkbox_one_c_answer">Boolean</string>
+    <string name="checkbox_one_d_answer">Float</string>
+    <string name="checkbox_one_e_answer">Double</string>
+    <string name="submit_button">Submit</string>
+    <string name="reset_button">Reset\n</string>
+    <string name="congratulations_message">"Congrats ! You passed with 100%"</string>
+    <string name="ok_button">Okay</string>
+    <string name="score_message">"Your score is : "</string>
 </resources>

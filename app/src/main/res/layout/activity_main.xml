@@ -1,133 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:layout_marginTop="50dp">
-
-    <ImageView
-        android:id="@+id/walmart_logo"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:src="@drawable/walmart_logo"
-        app:flow_horizontalAlign="center"
-        android:maxHeight="5dp"
-        android:maxWidth="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+    android:orientation="vertical"
+    tools:ignore="ExtraText">
 
     <TextView
-        android:id="@+id/signin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:flow_horizontalAlign="center"
-        app:layout_constraintTop_toBottomOf="@id/walmart_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="@string/sign_in"
-        android:gravity="center"
-        android:textSize="35sp"
-        android:textColor="@color/black"
-        android:visibility="visible"
-        />
-
-    <androidx.cardview.widget.CardView
+        android:id="@+id/questionOne"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/signin"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
->
-        <TextView
-            android:id="@+id/emailLabel"
+        android:text="@string/question_one"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radioButtonOneA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_button_a_answer" />
+
+        <RadioButton
+            android:id="@+id/radioButtonOneB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_button_b_answer" />
+
+        <RadioButton
+            android:id="@+id/radioButtonOneC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_button_c_answer" />
+
+        <RadioButton
+            android:id="@+id/radioButtonOneD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_button_d_answer" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/questionTwo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/question_two"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/checkbox1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/email_address_required"
-            android:textSize="20sp"
-            />
-        <EditText
-            android:id="@+id/emailText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/emailLabel"
-            android:inputType="textEmailAddress"
-            android:layout_marginTop="20dp"
-            />
+            android:text="@string/checkbox_one_a_answer" />
 
-        <TextView
-            android:id="@+id/passwordLabel"
+
+        <CheckBox
+            android:id="@+id/checkbox2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Password (required)"
-            app:layout_constraintTop_toBottomOf="@id/emailText"
-            android:textSize="20sp"
-            android:layout_marginTop="80dp"
-            />
-        <EditText
-            android:id="@+id/passwordText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/passwordLabel"
-            android:inputType="textPassword"
-            android:layout_marginTop="100dp"
-            />
+            android:text="@string/checkbox_one_b_answer" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/forgotPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Forgot Password"
-                android:textSize="15sp"
-                android:textColor="@color/walblue"
-                android:layout_marginTop="140dp"
-                android:layout_alignParentRight="true"
-                android:clickable="true"
-                android:focusable="true"
-                android:autoLink="all"
-                />
-        </RelativeLayout>
+
+        <CheckBox
+            android:id="@+id/checkbox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/checkbox_one_c_answer" />
+
+
+        <CheckBox
+            android:id="@+id/checkbox4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/checkbox_one_d_answer" />
+
+        <CheckBox
+            android:id="@+id/checkbox5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/checkbox_one_e_answer" />
+
 
         <Button
-            android:id="@+id/signInBtn"
+            android:id="@+id/submitBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/forgotPassword"
-            android:layout_marginTop="200dp"
-            android:text="Sign In"
-            android:background="@color/walblue"
-            />
-        <TextView
-            android:id="@+id/dontHave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/signInBtn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="Don't have an Account ?"
-            android:textSize="20sp"
-            android:layout_marginTop="270dp"
-            android:textAlignment="center"
+            android:text="@string/submit_button"
+            android:background="@color/purple_200"
+            android:layout_marginTop="10dp"
             />
 
         <Button
-            android:id="@+id/createAcntBtn"
+            android:id="@+id/resetBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="330dp"
-            android:text="Create an Account"
-            android:background="@null"
+            android:text="@string/reset_button"
+            android:background="@color/teal_700"
+            android:layout_marginTop="10dp"
+
             />
+    </LinearLayout>
 
 
-    </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
