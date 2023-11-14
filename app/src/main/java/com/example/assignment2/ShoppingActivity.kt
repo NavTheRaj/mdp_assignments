@@ -40,7 +40,7 @@ class ShoppingActivity : AppCompatActivity() {
         run {
             when (view.id) {
                 com.example.assignment2.R.id.tv -> {
-                    Toast.makeText(this, "Electronics Category", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, ElectronicsCategoryActivity::class.java))
                 }
 
                 com.example.assignment2.R.id.beauty -> {
